@@ -46,7 +46,7 @@ func (posts Posts) Pack(db *gorm.DB) {
 	// pack attached files
 
 	var attachedFiles PostAttachedFiles
-	if err := db.Where("post_id IN (?)", ids).Order("order ASC").Find(&attachedFiles).Error; err != nil {
+	if err := db.Where("post_id IN (?)", ids).Order("posts_attached_files.order ASC").Find(&attachedFiles).Error; err != nil {
 		panic(err)
 	}
 	attachedFiles.Pack(db)
